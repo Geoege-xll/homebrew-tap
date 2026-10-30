@@ -1,0 +1,21 @@
+name: Test published formula
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  homebrew:
+    runs-on: macos-latest
+    env:
+      HOMEBREW_NO_AUTO_UPDATE: "1"
+      HOMEBREW_NO_ANALYTICS: "1"
+    steps:
+      - name: Install published Formula and dependencies
+        run: brew install --formula Geoege-xll/tap/awf-cli
+      - name: Run Homebrew Formula test
+        run: brew test Geoege-xll/tap/awf-cli
+      - name: Verify installed command without changing PATH
+        run: '"$(brew --prefix)/bin/awf-cli" --help'
