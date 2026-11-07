@@ -1,9 +1,9 @@
 class AwfCli < Formula
   desc "Terminal manager for Agent Workflow projects and role models"
   homepage "https://github.com/Geoege-xll/agent-workflow"
-  url "https://github.com/Geoege-xll/agent-workflow/releases/download/v2.1.1/agent-workflow-2.1.1.tar.gz"
-  version "2.1.1"
-  sha256 "065b39c02ecbc95ec2b8ca6bd2bdaabfd08595b171389ccaf01325d06bbd6da9"
+  url "https://github.com/Geoege-xll/agent-workflow/releases/download/v2.1.2/agent-workflow-2.1.2.tar.gz"
+  version "2.1.2"
+  sha256 "bf530780231e61333c373f77b5111ee0d2b9835f5694357bec7931f6f640cea1"
 
   depends_on "python@3.14"
   # 固定 CLI 要求 Node >= 20；使用正常链接的 node 依赖，不改 PATH 或安装全局 npm 包。
@@ -12,7 +12,8 @@ class AwfCli < Formula
   def install
     libexec.install Dir["*"]
     bin.mkpath
-    # Pin the default runtime without changing PATH; preserve explicit user selections.
+    # 正式命令始终执行本 Formula 的绝对 libexec 载荷，不通过 PATH 查找
+    # awf-dev、源码 workflow.sh 或另一条 awf-cli；保留用户显式解释器选择。
     (bin/"awf-cli").write <<~SH
       #!/bin/bash
       export AGENT_WORKFLOW_PYTHON="${AGENT_WORKFLOW_PYTHON:-#{Formula["python@3.14"].opt_bin}/python3.14}"
@@ -27,6 +28,8 @@ class AwfCli < Formula
     diagnostic = shell_output("#{bin}/awf-cli --version")
     assert_match "awf-cli #{version}", diagnostic
     assert_match "中央源根：#{libexec.realpath}", diagnostic
+    assert_match "入口来源：formal（发行包）", diagnostic
+    assert_match "物理载荷根：#{libexec.realpath}", diagnostic
     assert_path_exists libexec/"lib/python_runtime.sh"
     assert_path_exists libexec/"lib/documents/requirement_html.py"
     assert_path_exists libexec/"lib/vendor/answer-me-with-html/am.mjs"
