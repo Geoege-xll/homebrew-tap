@@ -1,9 +1,9 @@
 class AwfCli < Formula
   desc "Terminal manager for Agent Workflow projects and role models"
   homepage "https://github.com/Geoege-xll/agent-workflow"
-  url "https://github.com/Geoege-xll/agent-workflow/releases/download/v2.1.0/agent-workflow-2.1.0.tar.gz"
-  version "2.1.0"
-  sha256 "00807cdcc777e4f6a032cd791c9f6724261415e61ff434f8f4e6d3baf5c97b23"
+  url "https://github.com/Geoege-xll/agent-workflow/releases/download/v2.1.1/agent-workflow-2.1.1.tar.gz"
+  version "2.1.1"
+  sha256 "065b39c02ecbc95ec2b8ca6bd2bdaabfd08595b171389ccaf01325d06bbd6da9"
 
   depends_on "python@3.14"
   # 固定 CLI 要求 Node >= 20；使用正常链接的 node 依赖，不改 PATH 或安装全局 npm 包。
@@ -28,7 +28,7 @@ class AwfCli < Formula
     assert_match "awf-cli #{version}", diagnostic
     assert_match "中央源根：#{libexec.realpath}", diagnostic
     assert_path_exists libexec/"lib/python_runtime.sh"
-    assert_path_exists libexec/"lib/requirement_html.py"
+    assert_path_exists libexec/"lib/documents/requirement_html.py"
     assert_path_exists libexec/"lib/vendor/answer-me-with-html/am.mjs"
     assert_path_exists libexec/"setup_all.sh"
     assert_path_exists libexec/"platforms"
