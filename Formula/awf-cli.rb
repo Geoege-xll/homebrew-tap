@@ -1,9 +1,9 @@
 class AwfCli < Formula
   desc "Terminal manager for Agent Workflow projects and role models"
   homepage "https://github.com/Geoege-xll/agent-workflow"
-  url "https://github.com/Geoege-xll/agent-workflow/releases/download/v2.1.2/agent-workflow-2.1.2.tar.gz"
-  version "2.1.2"
-  sha256 "bf530780231e61333c373f77b5111ee0d2b9835f5694357bec7931f6f640cea1"
+  url "https://github.com/Geoege-xll/agent-workflow/releases/download/v2.1.3/agent-workflow-2.1.3.tar.gz"
+  version "2.1.3"
+  sha256 "f1f53e6bfceac2003b7745f5c2037055e17ffc1062bd897d4a2b32e76e13b58d"
 
   depends_on "python@3.14"
   # 固定 CLI 要求 Node >= 20；使用正常链接的 node 依赖，不改 PATH 或安装全局 npm 包。
